@@ -1,6 +1,6 @@
 // Styles
 import "./Search.css";
 
-export default function Create() {
+export default function Search() {
   return <div>Search</div>;
 }
