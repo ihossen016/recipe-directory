@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 // Styles
@@ -11,6 +12,7 @@ export default function Create() {
   const [newIngredient, setNewIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
+  const history = useHistory();
 
   // Using PostData function to post data
   const { postData, data, error } = useFetch(
@@ -30,6 +32,13 @@ export default function Create() {
       cookingTime: cookingTime + " minutes",
     });
   };
+
+  // Redirect user after we get data response
+  useEffect(() => {
+    if (data) {
+      history.push("/");
+    }
+  }, [data]);
 
   // Ingredients list add function
   const handleAdd = e => {
