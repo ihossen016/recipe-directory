@@ -61,6 +61,16 @@
       "method": "Mix them all together...",
       "cookingTime": "20 minutes",
       "id": "gWRO61A"
+    },
+    {
+      "title": "Steam Rice",
+      "ingredients": [
+        "Rice",
+        "Water"
+      ],
+      "method": "cook them together",
+      "cookingTime": "20 minutes",
+      "id": "FmYAA1H"
     }
   ]
 }
