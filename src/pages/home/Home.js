@@ -1,11 +1,14 @@
-import { useFetch } from "../../hooks/useFetch";
+// Firebase
+import { projectFirestore } from "../../firebase/config";
+
+// import { useFetch } from "../../hooks/useFetch";
 import RecipeList from "../../components/RecipeList";
 
 // styles
 import "./Home.css";
 
 export default function Home() {
-  const { data, isPending, error } = useFetch("http://localhost:3000/recipes");
+  // const { data, isPending, error } = useFetch("http://localhost:3000/recipes");
 
   return (
     <div className="home">
