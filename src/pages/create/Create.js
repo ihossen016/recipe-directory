@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+
+// Firebase
+import { projectFirestore } from "../../firebase/config";
 
 // Styles
 import "./Create.css";
@@ -14,31 +16,25 @@ export default function Create() {
   const ingredientInput = useRef(null);
   const history = useHistory();
 
-  // Using PostData function to post data
-  const { postData, data, error } = useFetch(
-    "http://localhost:3000/recipes",
-    "POST"
-  );
-
   // Form Submit function
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // Posting data
-    postData({
+    const doc = {
       title,
       ingredients,
       method,
       cookingTime: cookingTime + " minutes",
-    });
-  };
+    };
 
-  // Redirect user after we get data response
-  useEffect(() => {
-    if (data) {
+    try {
+      await projectFirestore.collection("recipes").add(doc);
       history.push("/");
+    } catch (err) {
+      console.log(err);
     }
-  }, [data]);
+  };
 
   // Ingredients list add function
   const handleAdd = e => {
